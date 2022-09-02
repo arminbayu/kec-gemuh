@@ -1,8 +1,13 @@
-RewriteEngine on
-RewriteCond $1 !^(index\.php|images|robots\.txt)
-RewriteCond %{REQUEST_FILENAME} !-d
+RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
+
+# RewriteEngine on
+# RewriteCond $1 !^(index\.php|images|robots\.txt)
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteRule ^(.*)$ index.php/$1 [L]
 
 #RewriteCond %{THE_REQUEST} !/(bantuan|bantuan_view) [NC]
 #RewriteCond %{THE_REQUEST} !/(preview) [NC]
