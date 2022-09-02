@@ -11,7 +11,7 @@ router.get('/', Auth_mdw.check_login, function (req, res, next) {
 });
 
 router.get('/listPermintaan', Auth_mdw.check_login, function (req, res, next) {
-  postgreSql.query("SELECT id, nama, barang, merk, jumlah, status FROM tbl_permintaan ORDER BY created_at;", (err, respon) => {
+  postgreSql.query("SELECT id, nama, barang, merk, jumlah, status FROM tbl_permintaan ORDER BY id DESC;", (err, respon) => {
     if (err) {
       console.log(err);
     } else {
