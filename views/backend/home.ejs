@@ -1,0 +1,94 @@
+<% layout('layout') -%>
+    <style>
+        .client {
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 10px;
+            border-radius: 20px;
+            -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+            -moz-box-shadow: 3px 3px 5px 6px #ccc;
+            box-shadow: 3px 3px 5px 6px #ccc;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+    <!-- <div class="main-panel"> -->
+    <div class="container">
+        <div class="panel-header bg-primary-gradient">
+            <div class="page-inner py-5">
+                <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                    <div>
+                        <h2 class="text-white pb-2 fw-bold">Home</h2>
+                        <h5 class="text-white op-7 mb-2">Scan Barcode Whats Up Now</h5>
+                    </div>
+                    <div class="ml-md-auto py-2 py-md-0">
+                        <button class="btn btn-secondary btn-round" data-toggle="modal" data-target="#exampleModal">Add
+                            Account WA</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-inner mt--5">
+            <div class="row mt--2">
+                <div class="col-md-12">
+                    <div class="card full-height">
+                        <div class="card-body">
+                            <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+
+                                <div class="client-container"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Form Add Account Whats Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Sender</label>
+                            <input type="text" id="phone-number" class="form-control" required>
+                            <input type="hidden" id="userid" value="<%= emails %>">
+                            <input type="hidden" id="client-id" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Description</label>
+                            <textarea class="form-control" id="client-description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary add-client-btn">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            console.log("IOSSSSSSSSSSSSSSS");
+        });
+    </script>
