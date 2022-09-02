@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Permintaan</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="shortcut icon" href="https://kecgemuh.kendalkab.go.id//plugin/img/logoxx.png">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/atlantis.css">
+</head>
+
+<body class="login">
+	<div class="wrapper wrapper-login wrapper-login-full p-0">
+		<div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+			<div class="container container-login container-transparent animated fadeIn bg-white" style=" border:
+				ridge;padding-top: 20px;border-radius: 30px;">
+                <div class="text-center">
+                    <img src="https://kecgemuh.kendalkab.go.id//plugin/img/logoxx.png" alt="">
+                </div>
+                <br>
+				<h3 class="text-center fw-bold">Form Permintaan</h3>
+                <div class="login-form">
+                    <form action="/add-permintaan" method="POST">
+                        <div class="form-group">
+                            <label for="password" class="placeholder"><b>Nama</b></label>
+                            <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="placeholder"><b>Barang</b></label>
+                            <input type="text" class="form-control" name="barang" placeholder="Tuliskan Nama Barang" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="placeholder"><b>Merk</b></label>
+                            <input type="text" class="form-control" name="merk" placeholder="Tuliskan Merk Barang" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="placeholder"><b>Jumlah</b></label>
+                            <input type="number" class="form-control" name="jumlah" placeholder="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="placeholder"><b>Foto</b></label>
+                            <input type="file" class="form-control" name="file" required>
+                        </div>
+                        <br>
+                        <div class="form-group form-action-d-flex mb-3">
+                            <button type="submit" class="btn btn-secondary col-md-12 float-right mt-3 mt-sm-0 fw-bold">Submit</button>
+                        </div>
+                    </form>
+                </div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="assets/js/core/popper.min.js"></script>
+	<script src="assets/js/core/bootstrap.min.js"></script>
+	<script src="assets/js/atlantis.min.js"></script>
+</body>
+
+</html>

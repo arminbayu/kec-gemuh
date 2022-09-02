@@ -13895,7 +13895,7 @@ img.mfp-img {
 
   .conversations .conversations-body {
     padding: 1.5rem 1rem; } }
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 450px) {
   .quick_sidebar_open .quick-sidebar {
     width: 100%;
     padding: 20px; } }

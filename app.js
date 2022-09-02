@@ -19,14 +19,18 @@ var cookieParser = require('cookie-parser');
 
 var createError = require('http-errors');
 
+var permintaanRouter = require('./routes/permintaan');
+
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var listmessageRouter = require('./routes/listmessage');
-var sendwaRouter = require('./routes/sendwa');
 var usersRouter = require('./routes/users');
-var docapiRouter = require('./routes/docapi');
+
+var favicon = require('serve-favicon');
 
 var app = express();
+app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
+
 // var sessionStore = new session.MemoryStore;
 app.use(session({
   secret: 'keyboard cat',
@@ -53,21 +57,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Login Page
-app.use('/', loginRouter);
+app.use('/', permintaanRouter);
+app.use('/add-permintaan', permintaanRouter);
 // Route Home
 app.use('/home', indexRouter);
 // Route Login
-app.use('/login', loginRouter);
-app.use('/auth', loginRouter);
-app.use('/logout', loginRouter);
+app.use('/admin', loginRouter);
+app.use('/admin/auth', loginRouter);
+app.use('/admin/logout', loginRouter);
 // Route List Message
 app.use('/message', listmessageRouter);
 app.use('/message/listMessage', listmessageRouter);
-// Route Send Wa
-app.use('/sendwa', sendwaRouter);
-app.use('/sendwa/send-message', sendwaRouter);
-app.use('/sendwa/listSender', sendwaRouter);
-app.use('/sendwa/version', sendwaRouter);
 // Route Users
 app.use('/users', usersRouter);
 app.use('/users/add-users', usersRouter);
@@ -77,8 +77,6 @@ app.use('/users/delete-users', usersRouter);
 app.use('/users/edit-users', usersRouter);
 app.use('/users/reset-password', usersRouter);
 app.use('/users/logs', usersRouter);
-// Route Doc Api
-app.use('/docs-api', docapiRouter);
 
 const logging = winston.createLogger({
   level: 'info',
