@@ -3,7 +3,6 @@ var router = express.Router();
 var Auth_mdw = require('../middlewares/auth');
 
 var postgreSql = require('../database');
-
 const { Validator } = require('node-input-validator');
 
 var bcrypt = require('bcrypt');

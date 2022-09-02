@@ -23,7 +23,7 @@ var permintaanRouter = require('./routes/permintaan');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
-var listmessageRouter = require('./routes/listmessage');
+var listpermintaanRouter = require('./routes/listpermintaan');
 var usersRouter = require('./routes/users');
 
 var favicon = require('serve-favicon');
@@ -66,8 +66,9 @@ app.use('/admin', loginRouter);
 app.use('/admin/auth', loginRouter);
 app.use('/admin/logout', loginRouter);
 // Route List Message
-app.use('/message', listmessageRouter);
-app.use('/message/listMessage', listmessageRouter);
+app.use('/permintaan', listpermintaanRouter);
+app.use('/permintaan/listPermintaan', listpermintaanRouter);
+app.use('/permintaan/edit-permintaan', listpermintaanRouter);
 // Route Users
 app.use('/users', usersRouter);
 app.use('/users/add-users', usersRouter);
