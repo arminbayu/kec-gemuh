@@ -1,0 +1,18 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+#RewriteCond %{THE_REQUEST} !/(bantuan|bantuan_view) [NC]
+#RewriteCond %{THE_REQUEST} !/(preview) [NC]
+#RewriteCond %{REMOTE_ADDR} !=103.219.198.10
+#RewriteCond %{REMOTE_ADDR} !=202.152.159.172
+#RewriteRule ^.*$ / [R=302,L]
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php73” package as the default “PHP” programming language.
+#<IfModule mime_module>
+#  AddHandler application/x-httpd-ea-php73 .php .php7 .phtml
+#</IfModule>
+# php -- END cPanel-generated handler, do not edit
