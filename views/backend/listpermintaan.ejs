@@ -1,5 +1,4 @@
 <% layout('layout_permintaan') -%> 
-
 <div class="container">
     <div class="panel-header bg-primary-gradient">
         <div class="page-inner py-5">
@@ -16,9 +15,16 @@
         <div class="row mt--2">
             <div class="col-md-12">
                 <div class="card full-height">
+                    <div class="card-header">
+                        <div class="pull-right" style="margin-bottom:5px;">
+                            <div class="input-group input-group-sm" style="width: 300px;">
+                            <input type="text" name="daterange" class="form-control pull-right" readonly>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <div class="card-title">List Permintaan</div>
-                        <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+                        <div class="box">
+                          <div class="box-body">
                             <table class="table" id="example">
                                 <thead>
                                     <tr>
@@ -27,12 +33,14 @@
                                     <th scope="col">Barang</th>
                                     <th scope="col">Merk</th>
                                     <th scope="col">Jumlah</th>
+                                    <th scope="col">Tanggal</th>
                                     <th scope="col">#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 </tbody>
-                                </table>
+                            </table>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -44,7 +52,28 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+    
+    $(function() {
+        $('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+    }, function(start, end, label) {
+        $('#example').DataTable().destroy();
+        get_data_transaksi(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
+    });
+    });
+
     $(document).ready(function() {
+        get_data_transaksi('', '');
+    });
+    
+
+    function get_data_transaksi(tglBegin, tglEnd){
+        if(tglBegin == '')
+            tglBegin = '1000-01-01';
+
+        if(tglEnd == '')
+            tglEnd = '9999-12-31';
+
         $('#example').DataTable({
             dom: 'Blfrtip',
             buttons: [
@@ -53,10 +82,13 @@
             "lengthMenu": [10, 20, 50, 100, 200, 500, 1000, 5000, 10000],
             "pageLength": 20,
             "processing": true,
-            // "serverSide": true,
             ajax: {
                 'url':'/permintaan/listPermintaan',
-                'type': 'GET'
+                'type': 'POST',
+                'data' : {
+                    tglBegin : tglBegin,
+                    tglEnd : tglEnd
+                },
             },
             columns: [
                 {data: 'no', name: 'no'},
@@ -64,11 +96,11 @@
                 {data: 'barang', name: 'barang'},
                 {data: 'merk', name: 'merk'},
                 {data: 'jumlah', name: 'jumlah'},
+                {data: 'datetime', name: 'datetime'},
                 {data: 'aksi', name: 'aksi'},
             ],
         });
-        
-    });
+    };
     
     function Edit(id, val) {
             var id = $(id).data("id");
@@ -84,9 +116,8 @@
                 async: false,
                 dataType: 'json',
                 success: function (response) {
-                    $("#example").DataTable().ajax.reload(null, false);
                     if (response.status == 200 || response.status == true) {
-                        // Swal.fire('Success!', 'Succes Edi Data.', 'success');
+                        $("#example").DataTable().ajax.reload(null, false);
                     } else {
                         Swal.fire('Warning!', 'Try Again', 'warning');
                     }

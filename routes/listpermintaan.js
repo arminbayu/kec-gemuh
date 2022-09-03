@@ -10,13 +10,19 @@ router.get('/', Auth_mdw.check_login, function (req, res, next) {
   res.render('backend/listpermintaan', { emails: req.session.email, role: req.session.role });
 });
 
-router.get('/listPermintaan', Auth_mdw.check_login, function (req, res, next) {
-  postgreSql.query("SELECT id, nama, barang, merk, jumlah, status FROM tbl_permintaan ORDER BY id DESC;", (err, respon) => {
+router.post('/listPermintaan', Auth_mdw.check_login, function (req, res, next) {
+  let tglBegin = req.body.tglBegin;
+  let tglEnd = req.body.tglEnd;
+  postgreSql.query("SELECT id, nama, barang, merk, jumlah, status, created_at FROM tbl_permintaan WHERE created_at >= '" + tglBegin + "' AND created_at <= '" + tglEnd + "' ORDER BY id DESC;", (err, respon) => {
     if (err) {
       console.log(err);
     } else {
       respon.rows.forEach((e, i, arr) => {
         arr[i].no = i+1;
+        var date = new Date(arr[i].created_at);
+        var month = (date.getMonth().toString().length == 1) ? '0'+date.getMonth():date.getMonth();
+        var dateDay = (date.getDate().toString().length == 1) ? '0'+date.getDate():date.getDate();
+        arr[i].datetime = dateDay+'-'+month+'-'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
         if(arr[i].status > 0){
           arr[i].aksi = (arr[i].status == 1) ? "Disetujui" : "Ditolak";
         }else{
